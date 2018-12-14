@@ -1,0 +1,28 @@
+{
+  "name": "movie-logger",
+  "version": "1.0.0",
+  "description": "movie to log movies i want to watch",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexjharrison/movie-logger.git"
+  },
+  "author": "Alex Harrison",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexjharrison/movie-logger/issues"
+  },
+  "homepage": "https://github.com/alexjharrison/movie-logger#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "mongoose": "^5.3.16",
+    "nodemon": "^1.18.8"
+  }
+}
