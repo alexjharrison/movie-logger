@@ -1,51 +1,61 @@
 <template>
   <div id="app">
-    <button @click="clickHandler">I'm a button</button>
-    <h1>{{ couter }}</h1>
-    <AntiButton
-      v-on:decrement="decrementHandler"
-      v-for="decrementAmount in decrementAmounts"
-      v-bind:amount="decrementAmount"
-      v-bind:key="decrementAmount"
-    />
-    <input type="text" v-model="text" name="thing" id="blah">
+    <Header @newPage="newPage" :pages="pages" :movieInfo="movieInfo" @update="updateInfo"/>
+    <InTheaters v-if="currentPage==='In Theaters'" :movieInfo="movieInfo" @update="updateInfo"/>
+    <NewOnDvd v-if="currentPage==='New On DVD'" :movieInfo="movieInfo" @update="updateInfo"/>
+    <SavedMovies v-if="currentPage==='Saved Movies'" :movieInfo="movieInfo" @update="updateInfo"/>
+    <ComingSoon v-if="currentPage==='Coming Soon'" :movieInfo="movieInfo" @update="updateInfo"/>
+    <Watched v-if="currentPage==='Watched'" :movieInfo="movieInfo" @update="updateInfo"/>
   </div>
 </template>
 
 <script>
-import AntiButton from "./components/AntiButton.vue";
+import Header from "./components/Header";
+import {
+  InTheaters,
+  NewOnDvd,
+  SavedMovies,
+  ComingSoon,
+  Watched
+} from "./pages";
 
 export default {
   components: {
-    AntiButton
-  },
-  mounted() {
-    console.log("value: " + this.text);
+    Header,
+    InTheaters,
+    NewOnDvd,
+    SavedMovies,
+    ComingSoon,
+    Watched
   },
   data() {
     return {
-      couter: 0,
-      decrementAmounts: [10, 100, 1000, 10000],
-      text: "3"
+      currentPage: "Saved Movies",
+      pages: [
+        "In Theaters",
+        "New On DVD",
+        "Saved Movies",
+        "Coming Soon",
+        "Watched"
+      ],
+      movieInfo: {
+        // comingSoon: []
+      }
     };
   },
   methods: {
-    clickHandler() {
-      this.couter++;
+    newPage(pageName) {
+      this.currentPage = pageName;
     },
-    decrementHandler(amount) {
-      this.couter -= amount;
-    }
-  },
-  watch: {
-    text() {
-      console.log("value: " + this.text);
+    updateInfo(infoToSaveName, infoToSaveData) {
+      this.$set(this.movieInfo, infoToSaveName, infoToSaveData);
     }
   }
 };
 </script>
 
 <style>
-button {
+body {
+  margin: 0;
 }
 </style>
