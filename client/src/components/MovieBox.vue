@@ -11,9 +11,11 @@
     <p>{{movie.overview}}</p>
     <button @click="toggle">{{expanded ? "Collapse": "More Info"}}</button>
     <button v-if="!expanded" @click="save">Save Movie</button>
+    <a
+      :href="'https://google.com/search?q='+movie.title+' ('+movie.release_date.slice(0,4)+')'"
+    >Showtimes</a>
     <br>
     <br>
-    <hr>
   </div>
 </template>
 
@@ -63,7 +65,9 @@ export default {
 .moviebox {
   width: 200px;
   text-align: center;
-  margin: 0 auto;
+  margin: 10px auto;
+  border-top: #999 solid 1px;
+  padding: 5px;
 }
 .moviebox img {
   width: 100%;
