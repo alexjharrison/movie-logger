@@ -9,8 +9,8 @@
     >
     <img v-else src="../assets/images/noMovie.jpg" :alt="movie.title + ' poster'">
     <p>{{movie.overview}}</p>
-    <button @click="toggle">More Info</button>
-    <button @click="save">Save Movie</button>
+    <button @click="toggle">{{expanded ? "Collapse": "More Info"}}</button>
+    <button v-if="!expanded" @click="save">Save Movie</button>
     <br>
     <br>
     <hr>
@@ -36,7 +36,8 @@ export default {
   },
   methods: {
     toggle() {
-      this.$emit("toggle", this.movie.id);
+      this.expanded = !this.expanded;
+      this.$emit("toggle", this.expanded ? this.movie.id : -1);
       document
         .getElementsByClassName(this.movie.id)[0]
         .classList.toggle("expand");
@@ -60,10 +61,9 @@ export default {
 
 <style>
 .moviebox {
-  width: 80%;
+  width: 200px;
   text-align: center;
   margin: 0 auto;
-  transition: 2s all ease-in-out;
 }
 .moviebox img {
   width: 100%;
@@ -71,7 +71,12 @@ export default {
 }
 .expand {
   background-color: #ddd;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
+}
+@media only screen and (max-width: 435px) {
+  .moviebox {
+    width: 100%;
+  }
 }
 </style>

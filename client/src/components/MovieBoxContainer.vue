@@ -1,6 +1,11 @@
 <template>
-  <div @toggle="toggleOne" class="movieboxcontainer">
-    <MovieBox v-for="movie in movies" :key="movie.id" :movie="movie"/>
+  <div class="movieboxcontainer">
+    <MovieBox
+      @toggle="toggleOne"
+      v-for="movie in movieDisplayedList"
+      :key="movie.id"
+      :movie="movie"
+    />
   </div>
 </template>
 
@@ -33,4 +38,10 @@ export default {
 </script>
 
 <style>
+.movieboxcontainer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 10px;
+}
 </style>
