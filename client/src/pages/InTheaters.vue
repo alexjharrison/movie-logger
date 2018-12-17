@@ -1,18 +1,18 @@
 <template>
   <div id="InTheaters">
     <h3>In Theaters</h3>
-    <MovieBox v-for="movie in movieInfo.nowPlaying" :movie="movie" :key="movie.id"/>
+    <MovieBoxContainer parent="InTheaters" :movies="movieInfo.nowPlaying"/>
   </div>
 </template>
 
 <script>
-import MovieBox from "../components/MovieBox";
+import MovieBoxContainer from "../components/MovieBoxContainer";
 import axios from "axios";
 
 export default {
   props: ["movieInfo"],
   components: {
-    MovieBox
+    MovieBoxContainer
   },
   async mounted() {
     if (!this.movieInfo.nowPlaying) {

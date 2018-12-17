@@ -27,16 +27,6 @@ export default {
     };
   },
   props: ["movie"],
-  async mounted() {
-    // let omdbInfo = await axios.get(
-    //   "/api/omdb/" +
-    //     this.movie.title +
-    //     "/" +
-    //     this.movie.release_date.slice(0, 4)
-    // );
-    // this.omdb = omdbInfo.data;
-    // this.$parent.$emit("omdb", omdbInfo.data, this.movie.id);
-  },
   computed: {
     posterUrl() {
       return this.movie.backdrop_path
@@ -46,6 +36,7 @@ export default {
   },
   methods: {
     toggle() {
+      this.$emit("toggle", this.movie.id);
       document
         .getElementsByClassName(this.movie.id)[0]
         .classList.toggle("expand");

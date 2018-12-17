@@ -1,18 +1,18 @@
 <template>
   <div id="SavedMovies">
     <h3>Saved Movies</h3>
-    <MovieBox v-for="movie in savedMovies" :movie="movie" :key="movie.id"/>
+    <MovieBoxContainer parent="Saved Movies" :movies="savedMovies"/>
   </div>
 </template>
 
 <script>
 import axios from "axios";
-import MovieBox from "../components/MovieBox";
+import MovieBoxContainer from "../components/MovieBoxContainer";
 
 export default {
   props: ["movieInfo"],
   components: {
-    MovieBox
+    MovieBoxContainer
   },
   data() {
     return {
