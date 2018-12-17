@@ -11,6 +11,11 @@ module.exports = async (movieName, year) => {
   await page.goto("https://rottentomatoes.com/m/" + fixedTitleWithYear);
   await page.waitFor(1000);
   // Scrape
+
+  if (404) {
+    //scrape again @ fixedTitleWithoutYear
+  }
+
   browser.close();
   return result;
 };
