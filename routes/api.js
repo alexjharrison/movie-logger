@@ -98,4 +98,15 @@ router.delete("/deleteAll", async (req, res) => {
   res.send(resp);
 });
 
+router.get("/rttest", (req, res) => {
+  axios
+    .get("https://www.rottentomatoes.com/")
+    .then(resp => {
+      res.status(200).json(resp.data);
+    })
+    .catch(err => {
+      res.status(404).json(err.data);
+    });
+});
+
 module.exports = router;
